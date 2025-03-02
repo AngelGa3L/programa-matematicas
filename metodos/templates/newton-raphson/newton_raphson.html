@@ -1,0 +1,55 @@
+{% extends 'desing/base.html' %}
+
+{% block title %}Newton-Raphson{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1 class="text-center">Método de Newton-Raphson</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="funcion" class="form-label">Función (usa ** para potencia y * para multiplicar):</label>
+            <input type="text" class="form-control" id="funcion" name="funcion" required>
+        </div>
+        <div class="mb-3">
+            <label for="x0" class="form-label">Valor inicial (x0):</label>
+            <input type="number" step="any" class="form-control" id="x0" name="x0" required>
+        </div>
+        <div class="mb-3">
+            <label for="decimales" class="form-label">Número de decimales:</label>
+            <input type="number" class="form-control" id="decimales" name="decimales" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Calcular</button>
+    </form>
+
+    {% if error %}
+        <div class="alert alert-danger mt-3">{{ error }}</div>
+    {% endif %}
+
+    {% if resultados %}
+        <h2 class="mt-4">Resultados</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Iteración</th>
+                    <th>x0</th>
+                    <th>f(x0)</th>
+                    <th>f'(x0)</th>
+                    <th>x1</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for iteracion, x0, fx, dfx, x1 in resultados %}
+                <tr>
+                    <td>{{ iteracion }}</td>
+                    <td>{{ x0 }}</td>
+                    <td>{{ fx }}</td>
+                    <td>{{ dfx }}</td>
+                    <td>{{ x1 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}
