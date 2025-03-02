@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-lc$@i3icdusr)y8d0bm_p4tc+o%t5i-1@@71(3#$#yd8vlc#nu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [programa-matematicas.onrender.com, 'www.programa-matematicas.onrender.com','localhost', '127.0.0.1']
 
 
 # Application definition
